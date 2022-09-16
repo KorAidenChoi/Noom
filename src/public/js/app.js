@@ -1,1 +1,1 @@
-alert("Areyou stinky");
+js;

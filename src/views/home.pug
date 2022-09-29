@@ -11,8 +11,12 @@ html(lang="en")
       header 
         h1 Noom
       main
-      ul
-        form 
-          input(type="text", placeholder="write as poopy message")
+        ul
+        form#nick
+          input(type="text", placeholder="choose a stinky nickname", required)
+          button Save
+        ul
+        form#message
+          input(type="text", placeholder="write as poopy message", required)
           button Send
       script(src="/public/js/app.js")

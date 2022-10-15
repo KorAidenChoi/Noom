@@ -18,7 +18,10 @@ html(lang="en")
           div#room
             h3
             ul
-            form
+            form#name
+              input(placeholder="save nickname thingy", required, type="text")
+              button Save
+            form#msg
               input(placeholder="message", required, type="text")
               button Send poop to everyone
       script(src="/socket.io/socket.io.js")

@@ -17,7 +17,7 @@ const httpServer = http.createServer(app);
 const wsServer = SocketIO(httpServer);
 
 function publicRooms() {
-    const {socket: {adapter: {sids, rooms}}} = wsServer;
+    const {sockets: {adapter: {sids, rooms}}} = wsServer;
     const publicRooms = [];
     rooms.forEach((_, key) => {
         if(sids.get(key) === undefined){
@@ -38,10 +38,14 @@ wsServer.on("connection", (socket) => {
             socket.to(room).emit("bye", socket.nickname);
         });
     });
+    socket.on("disconnect", () => {
+        wsServer.sockets.emit("room_change", publicRooms());
+    });
     socket.on("enter_room", (roomName, showRoom) => {
         socket.join(roomName);
         showRoom();
         socket.to(roomName).emit("welcome", socket.nickname);
+        wsServer.sockets.emit("room_change", publicRooms());
     });
     socket.on("new_message", (msg, room, done) => {
         socket.to(room).emit("new_message", `${socket.nickname}: ${msg}`);

@@ -6,10 +6,10 @@ html(lang="en")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         title Noom
 
-        link(rel="stylesheet", href="https://unpkg.com/mvp.css@1.10.2/mvp.css")
+        link(rel="stylesheet", type = "text/css" href="views/stylesheet.css")
     body
       header 
-        h1 Noom
+        h1#e Noom
       main
         div#welcome
           form
@@ -18,9 +18,10 @@ html(lang="en")
         div#call
           div#myStream
             video#myFace(autoplay,playsinline, width="400", height="400")
+            video#peerFace(autoplay,playsinline, width="400", height="400")
+            <br/>
             button#mute Mute
             button#camera Turn camera off
             select#cameras 
-            video#peerFace(autoplay,playsinline, width="400", height="400")
       script(src="/socket.io/socket.io.js")
       script(src="/public/js/app.js")
